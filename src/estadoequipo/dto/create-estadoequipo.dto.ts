@@ -1,4 +1,7 @@
+import { IsNotEmpty, IsString } from "class-validator";
+
 export class CreateEstadoequipoDto {
-    id: number;
+    @IsString()
+    @IsNotEmpty()
     estado: string;
 }

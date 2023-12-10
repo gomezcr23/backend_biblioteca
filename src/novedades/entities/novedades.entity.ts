@@ -1,6 +1,5 @@
 import { Equipo } from 'src/equipos/entities/equipo.entity';
-import { Prestamo } from 'src/prestamos/entities/prestamo.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne,  } from 'typeorm';
 
 @Entity({ name: 'novedades', schema: 'public' })
 export class Novedades {
