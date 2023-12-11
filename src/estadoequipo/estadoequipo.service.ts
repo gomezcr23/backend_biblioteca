@@ -26,14 +26,14 @@ export class EstadoequipoService {
     return this.estadoequipoRepository.findOneBy({ id: id });
   }
 
-  async Actualizar(id: number, UpdateEstadoPrestamoDto: UpdateEstadoEquipoDto): Promise<Estadoequipo> {
+  async Actualizar(id: number ): Promise<Estadoequipo> {
     const estadoequipo = await this.estadoequipoRepository.findOneBy({ id: id });
 
     if (!estadoequipo) {
       throw new NotFoundException(`El Estado del Equipo con el ID ${id} no existe`);
     }
 
-    this.estadoequipoRepository.merge(estadoequipo, UpdateEstadoPrestamoDto);
+    this.estadoequipoRepository.merge(estadoequipo);
     return this.estadoequipoRepository.save(estadoequipo);
   }
 

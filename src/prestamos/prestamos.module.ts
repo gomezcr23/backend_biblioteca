@@ -9,10 +9,12 @@ import { EquiposService } from 'src/equipos/equipos.service';
 import { DetallePrestamoService } from 'src/detalle-prestamo/detalle-prestamo.service';
 import { EstadoprestamoModule } from 'src/estadoprestamo/estadoprestamo.module';
 import { EstadoprestamoService } from 'src/estadoprestamo/estadoprestamo.service';
+import { NovedadesModule } from 'src/novedades/novedades.module';
+import { NovedadesService } from 'src/novedades/novedades.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Prestamo]),EquiposModule,DetallePrestamoModule, EstadoprestamoModule],
-  providers: [PrestamosService,EquiposService,DetallePrestamoService,EstadoprestamoService],
+  imports: [TypeOrmModule.forFeature([Prestamo]),EquiposModule,DetallePrestamoModule, EstadoprestamoModule, NovedadesModule],
+  providers: [PrestamosService,EquiposService,DetallePrestamoService,EstadoprestamoService, NovedadesService],
   controllers: [PrestamosController]
 })
 export class PrestamosModule {}

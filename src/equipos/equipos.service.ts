@@ -1,4 +1,5 @@
 import {
+  Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -8,12 +9,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Equipo } from './entities/equipo.entity';
 import { Repository } from 'typeorm';
 import { UpdateEquipoDto } from './dto/update-equipo.dto';
+import { Estadoequipo } from 'src/estadoequipo/entities/estadoequipo.entity';
+import { EstadoequipoService } from 'src/estadoequipo/estadoequipo.service';
 
 @Injectable()
 export class EquiposService {
-  constructor(
-    @InjectRepository(Equipo)
-    private readonly equipoRepository: Repository<Equipo>,
+  constructor( 
+    @InjectRepository(Equipo) private readonly equipoRepository: Repository<Equipo>,
+    @InjectRepository(Estadoequipo) private readonly estadoEntity: Repository<Estadoequipo>,
+    @Inject(EstadoequipoService) private readonly estadoservice : EstadoequipoService
   ) { }
 
   Equipo(createEquipoDto: CreateEquipoDto) {
@@ -42,6 +46,21 @@ export class EquiposService {
 
     this.equipoRepository.merge(equipo, updateEquipoDto);
     return this.equipoRepository.save(equipo);
+  }
+
+  async ActualizarEstadoEquipo(codigo, idEstado) {
+    try {
+      const equipo = await this.equipoRepository.findOne({ where: { codigo } });
+      if (!equipo) {
+        throw new NotFoundException('Equipo no encontrado');
+      }
+      const cambioestado = await this.estadoservice.Actualizar(idEstado);
+      equipo.estado = cambioestado;
+      this.equipoRepository.merge(equipo);
+      return this.equipoRepository.save(equipo);
+    } catch (error) {
+      console.error('Aqui', error)
+    }
   }
 
   ActualizarTodo(CreateEquipoDto : CreateEquipoDto) {

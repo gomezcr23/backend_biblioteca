@@ -8,6 +8,5 @@ export class UpdateNovedadDto extends PartialType(NovedadesDto) {
   @IsNotEmpty()
   id: number;
   descripcion: string;
-  fecha_novedad: String;
-  tipo_novedad: String;
+
 }

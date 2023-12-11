@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/
 import { PrestamosService } from './prestamos.service';
 import { CreatePrestamoDto } from './dto/create-prestamo.dto';
 import { UpdatePrestamoDto } from './dto/update-prestamo.dto';
+import { DevolverDto } from './dto/devolver.dto';
 
 @Controller('prestamos')
 export class PrestamosController {
@@ -33,6 +34,10 @@ export class PrestamosController {
     return this.prestamosService.ActualizarEstadoPrestamo(id, EstadoPrestamoId);
   }
 
+  @Put('/devolucion')
+  async devolucion(@Body() devolver: DevolverDto){
+    return await this.prestamosService.devolucion(devolver);
+  }
 
   @Delete('eliminar/:id')
   Eliminar(@Param('id') id: number) {

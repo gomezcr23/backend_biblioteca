@@ -1,5 +1,6 @@
 import { detallePrestamo } from 'src/detalle-prestamo/entities/detalle-prestamo.entity';
 import { Estadoprestamo } from 'src/estadoprestamo/entity/estadoprestamo.entity';
+import { Novedades } from 'src/novedades/entities/novedades.entity';
 import { Usuarios } from 'src/usuarios/entities/usuarios.entity';
 import { Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -16,9 +17,9 @@ export class Prestamo {
     @JoinColumn()
     estado_prestamo: Estadoprestamo;
 
-    /* @OneToMany(() => Novedades, (novedades) => novedades.prestamo)
-    prestamo: Novedades[]; */
+    @OneToMany(() => Novedades, (novedades) => novedades.prestamo)
+    prestamo: Novedades[];
 
-    @OneToMany(() => detallePrestamo, (detallePrestamo) => detallePrestamo.detalle_prestamo, {eager:true})
+    @OneToMany(() => detallePrestamo, (detallePrestamo) => detallePrestamo.detalle_prestamo, { eager: true })
     prestamo_detalle: detallePrestamo[];
 }

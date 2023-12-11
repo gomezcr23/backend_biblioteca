@@ -50,6 +50,12 @@ export class EquiposController {
     return this.equiposService.ActualizarTodo(CreateEquipoDto);
   }
 
+  @Put('/actualizar_estado_equipo/:codigo/:idEstado')
+  ActualizarEquipo(@Param('codigo') codigo:number, @Param('idEstado') idEstado:number)  {
+    return this.equiposService.ActualizarEstadoEquipo(codigo, idEstado);
+  }
+
+
   @Delete('/eliminar/:codigo')
   Eliminar(@Param('codigo') id: number) {
     return this.equiposService.EliminarEquipo(id);

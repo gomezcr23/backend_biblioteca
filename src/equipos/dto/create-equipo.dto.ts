@@ -5,6 +5,6 @@ export class CreateEquipoDto {
   codigo: number;
   serial: string;
   descripcion: string;
-  estado: Estadoequipo[];
+  estado: Estadoequipo;
   tipo: TiposEquipos[];
 }

@@ -37,7 +37,7 @@ export class EstadoequipoController {
   }
   @Put('/actualizar/:id')
   Actualizar_estado_equipo(@Param('id') id: number, @Body() UpdateEstadoEquipoDto: UpdateEstadoEquipoDto): Promise<Estadoequipo> {
-    return this.estadoequipoService.Actualizar(id, UpdateEstadoEquipoDto);
+    return this.estadoequipoService.Actualizar(id);
   }
 
   @Delete('eliminar/:id')

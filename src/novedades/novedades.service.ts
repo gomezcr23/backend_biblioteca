@@ -1,20 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Novedades } from './entities/novedades.entity';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateNovedadDto } from './dto/update-equipo.dto';
+import { CrearNovedadesDto } from './dto/novedades.dto';
 
 @Injectable()
 export class NovedadesService {
   constructor(
     @InjectRepository(Novedades)
     private readonly novedadesRepository: Repository<Novedades>,
+    private dataSource: DataSource
   ) { }
 
   Novedad(tipo) {
     return this.novedadesRepository.insert(tipo);
   }
-
+async crearNovedades(novedades:CrearNovedadesDto[]){
+return await this.dataSource.getRepository(Novedades).createQueryBuilder().insert().values(novedades).execute();
+}
   obtener() {
     return this.novedadesRepository.find();
   }

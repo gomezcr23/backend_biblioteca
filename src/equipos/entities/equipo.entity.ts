@@ -26,13 +26,13 @@ export class Equipo {
 
   @ManyToOne(() => Estadoequipo, (estadoequipo) => estadoequipo.estado, {eager: true})
   @JoinColumn()
-  estado: Estadoequipo[];
+  estado: Estadoequipo;
 
   @ManyToOne(() => TiposEquipos, (TiposEquipos) => TiposEquipos.equipo_tipo, {eager: true})
   @JoinColumn()
   tipo: TiposEquipos[];
 
-  @OneToMany(() => Novedades, (novedad) => novedad.equipo_novedades)
+  @OneToMany(() => Novedades, (novedad) => novedad.equipo)
   novedades: Novedades[];
 
 

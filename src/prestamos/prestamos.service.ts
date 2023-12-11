@@ -10,6 +10,8 @@ import { CreatePrestamoDto } from './dto/create-prestamo.dto';
 import { EstadoprestamoService } from 'src/estadoprestamo/estadoprestamo.service';
 import { Estadoprestamo } from 'src/estadoprestamo/entity/estadoprestamo.entity';
 import { UpdateEstadoPrestamoDto } from 'src/estadoprestamo/Dto/update-estadoprestamo.dto';
+import { DevolverDto } from './dto/devolver.dto';
+import { NovedadesService } from 'src/novedades/novedades.service';
 
 @Injectable()
 export class PrestamosService {
@@ -17,6 +19,7 @@ export class PrestamosService {
     @Inject(EquiposService) private equipoService: EquiposService,
     @Inject(DetallePrestamoService) private detalleService: DetallePrestamoService,
     @Inject(EstadoprestamoService) private estadoservice: EstadoprestamoService,
+    @Inject(NovedadesService) private novedadesService: NovedadesService,
     @InjectRepository(Prestamo) private prestamostabla: Repository<Prestamo>,
     @InjectRepository(detallePrestamo) private detalle: Repository<detallePrestamo>,
     @InjectRepository(Estadoprestamo) private estado: Repository<Estadoprestamo>,
@@ -100,5 +103,19 @@ export class PrestamosService {
       throw new Error('El préstamo no existe.');
     }
     return this.prestamostabla.delete(id);
+  }
+
+  async devolucion(devolver: DevolverDto) {
+    const novedades: any = devolver.equipos.map(equipo => {
+      return {
+        prestamo: devolver.idPrestamo,
+        equipo: equipo.idEquipo,
+        descripcion: equipo.descripcion
+      }
+    });
+    const novedadesCreate = await this.novedadesService.crearNovedades(novedades);
+    if (novedadesCreate) {
+
+    }
   }
 }
