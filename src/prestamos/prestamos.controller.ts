@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { PrestamosService } from './prestamos.service';
 import { CreatePrestamoDto } from './dto/create-prestamo.dto';
-import { UpdatePrestamoDto } from './dto/update-prestamo.dto';
 import { DevolverDto } from './dto/devolver.dto';
 
 @Controller('prestamos')
@@ -12,6 +11,7 @@ export class PrestamosController {
   Estado(@Body() Prestamo: CreatePrestamoDto) {
     console.log(Prestamo);
     return this.prestamosService.Crearprestamo(Prestamo);
+    
   }
 
   @Get('/obtener_prestamo/:cedula')
@@ -35,7 +35,7 @@ export class PrestamosController {
   }
 
   @Put('/devolucion')
-  async devolucion(@Body() devolver: DevolverDto){
+  async devolucion(@Body() devolver: DevolverDto) {
     return await this.prestamosService.devolucion(devolver);
   }
 

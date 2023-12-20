@@ -50,9 +50,9 @@ export class PrestamosService {
       console.log('prestamo', prestar);
     }
     var id = r.identifiers[0].id;
-    if (prestar.length == 0) {
+    if (prestar.length === 0) {
       this.eliminarPrestamo(id);
-      return { error: 'No se pueden prestar equipos debido a conflictos de fechas' };
+      throw new Error('No se pueden prestar equipos debido a conflictos de fechas');
     }
 
     for (let data of prestar) {
@@ -115,7 +115,12 @@ export class PrestamosService {
     });
     const novedadesCreate = await this.novedadesService.crearNovedades(novedades);
     if (novedadesCreate) {
-
+      for (const equipo of devolver.equipos) {
+        await this.equipoService.ActualizarEstadoEquipo(equipo.idEquipo, equipo.idEstado);
+       
+      }
+      return { message: 'Estado del equipo actualizado con exito!' };
     }
   }
+  
 }

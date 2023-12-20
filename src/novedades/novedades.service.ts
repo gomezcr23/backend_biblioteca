@@ -16,9 +16,9 @@ export class NovedadesService {
   Novedad(tipo) {
     return this.novedadesRepository.insert(tipo);
   }
-async crearNovedades(novedades:CrearNovedadesDto[]){
-return await this.dataSource.getRepository(Novedades).createQueryBuilder().insert().values(novedades).execute();
-}
+  async crearNovedades(novedades: CrearNovedadesDto[]) {
+    return await this.dataSource.getRepository(Novedades).createQueryBuilder().insert().values(novedades).execute();
+  }
   obtener() {
     return this.novedadesRepository.find();
   }

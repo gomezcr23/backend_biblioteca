@@ -81,5 +81,5 @@ export class EquiposService {
 
   obtenerBuenos(tipo:number, estado:number){
     return this.equipoRepository.find({where:{tipo:{id:tipo}, estado:{id:estado}},relations:{tipo:true, estado:true}});
-}
+  }
 }
