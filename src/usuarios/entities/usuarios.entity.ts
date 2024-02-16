@@ -22,6 +22,9 @@ export class Usuarios {
   @Column()
   email: string;
 
+  @Column({nullable: false})
+  password: string;
+
   @ManyToOne(() => EstadoUsuario, (estadoUsuario) => estadoUsuario.usuario)
   @JoinColumn()
   estadoDelUsuario: EstadoUsuario[];

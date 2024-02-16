@@ -7,6 +7,7 @@ export class UsuariosDto {
     apellido: string;
     telefono: number;
     email: string;
+    password: string;
     estadoDelUsuario:EstadoUsuario[];
     roles: Role[];
 

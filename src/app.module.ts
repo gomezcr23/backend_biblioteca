@@ -22,6 +22,7 @@ import { Prestamo } from './prestamos/entities/prestamo.entity';
 import { Usuarios } from './usuarios/entities/usuarios.entity';
 import { EstadoUsuarioModule } from './estado_usuario/estado_usuario.module';
 import { EstadoUsuario } from './estado_usuario/entities/estado_usuario.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -55,7 +56,10 @@ import { EstadoUsuario } from './estado_usuario/entities/estado_usuario.entity';
 
     UsuariosModule,
 
-    EstadoUsuarioModule
+    EstadoUsuarioModule,
+
+    AuthModule
+
   ],
   controllers: [AppController],
   providers: [AppService],

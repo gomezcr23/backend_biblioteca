@@ -7,10 +7,7 @@ import { Usuarios } from './entities/usuarios.entity';
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) { }
 
-  @Post('/crear')
-  Equipo(@Body() createEquipoDto: UpdateUsuariosDto) {
-    return this.usuariosService.Equipo(createEquipoDto);
-  }
+ 
 
   @Get('/obtener')
   Obtener() {

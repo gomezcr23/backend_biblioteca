@@ -12,6 +12,14 @@ export class UsuariosService {
         private readonly usuariosRepository: Repository<Usuarios>,
     ) { }
 
+    findOneByEmail(email: string){
+        return this.usuariosRepository.findOneBy({email})
+    }
+
+    create(createUserDto: UsuariosDto ){
+        return this.usuariosRepository.save(createUserDto)
+    }
+
     Equipo(usuariosDto: UsuariosDto) {
 
         return this.usuariosRepository.insert(usuariosDto);
